@@ -1,7 +1,7 @@
 # Statistics for Modern Physics Group Project
 
-## Topic
-XENON1T approximate nuclear-recoil likelihood recast
+##Dark Matter Project 2: XENON1T Approximate Nuclear-Recoil
+Likelihood
 
 ## Team members
 - Floris Ordelmans
