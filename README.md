@@ -3,7 +3,7 @@
 ## Dark Matter Project 2: XENON1T Approximate Nuclear-Recoil Likelihood
 
 ## Team members
-- Floris Ordelmans
+- Floris Ordelmans - S5693705
 - Name 2
 - Name 3
 - Name 4
