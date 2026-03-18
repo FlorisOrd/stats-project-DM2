@@ -1,1 +1,17 @@
-# stats-project-DM2
+# Statistics for Modern Physics Group Project
+
+## Topic
+XENON1T approximate nuclear-recoil likelihood recast
+
+## Team members
+- Floris Ordelmans
+- Name 2
+- Name 3
+- Name 4
+- Name 5
+
+## Repository structure
+- data/: input data and processed data
+- src/: reusable analysis code
+- notebooks/: exploratory notebooks
+- plots/: generated figures
