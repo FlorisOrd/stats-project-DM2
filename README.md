@@ -1,6 +1,4 @@
-# Statistics for Modern Physics Group Project
-
-## Dark Matter Project 2: XENON1T Approximate Nuclear-Recoil Likelihood
+# Dark Matter Project 2: XENON1T Approximate Nuclear-Recoil Likelihood
 
 ## Team members
 - Floris Ordelmans - S5693705
