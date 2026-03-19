@@ -2,7 +2,7 @@
 
 ## Team members
 - Floris Ordelmans - S5693705
-- Name 2
+- Cristian Ioniță — S5299837
 - Name 3
 - Name 4
 - Name 5
