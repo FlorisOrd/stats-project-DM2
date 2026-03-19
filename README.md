@@ -3,7 +3,7 @@
 ## Team members
 - Floris Ordelmans - S5693705
 - Cristian Ioniță — S5299837
-- Name 3
+- Gianny Capitein - S4498313
 - Name 4
 - Name 5
 
