@@ -1,0 +1,18 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# macOS / Windows clutter
+.DS_Store
+Thumbs.db
+
+# virtual environments
+venv/
+.venv/
+env/
+
+# generated plots or large temporary outputs
+*.log
