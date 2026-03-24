@@ -12,3 +12,6 @@
 - src/: reusable analysis code
 - notebooks/: exploratory notebooks
 - plots/: generated figures
+
+## Environment setup
+For now, install the packages listed in `requirements.txt`.
