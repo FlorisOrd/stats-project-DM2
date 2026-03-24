@@ -15,3 +15,6 @@
 
 ## Environment setup
 For now, install the packages listed in `requirements.txt`.
+
+## Local setup
+Create and activate a virtual environment before installing project packages.
