@@ -16,10 +16,18 @@ def make_xenon1t_inference(spectrum):
     return BinwiseInference.from_xenon1t_sr(spectrum=spectrum)
 
 
+def likelihood_scan(inference, run=0, n_points=100):
+    """
+    Evaluate the likelihood-ratio function on the package's default x-grid.
+    Returns arrays x and llr(x).
+    """
+    f_llr = inference.compute_likelihood_ratio(run=run)
+    x = np.asarray(f_llr.x[:n_points], dtype=float)
+    y = np.asarray([float(f_llr(val)) for val in x], dtype=float)
+    return x, y
+
+
 def safe_compute_ul(inference, cl=0.1, asymptotic=True, run=0):
-    """
-    Work around the package's compute_ul issue by forcing xmin to be a scalar.
-    """
     if asymptotic:
         threshold = lambda x: sps.chi2(1).isf(cl)
     else:
@@ -36,11 +44,4 @@ def safe_compute_ul(inference, cl=0.1, asymptotic=True, run=0):
         return float(f_llr(x) - llmin - threshold(x))
 
     xmax = float(f_llr.x[-1])
-
-    # Optional debug prints
-    print("xmin =", xmin)
-    print("xmax =", xmax)
-    print("llz(xmin) =", llz(xmin))
-    print("llz(xmax) =", llz(xmax))
-
     return brentq(llz, xmin, xmax)
