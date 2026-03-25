@@ -1,7 +1,7 @@
 # Dark Matter Project 2: XENON1T Approximate Nuclear-Recoil Likelihood
 
 ## Team members
-- Floris Ordelmans - S5693705
+- Floris Ordelmans - S5693705 (Data lead)
 - Cristian Ioniță — S5299837
 - Gianny Capitein - S4498313
 - Yuval Rochman - S5411505
