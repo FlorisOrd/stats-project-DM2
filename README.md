@@ -12,7 +12,6 @@
 - `src/` reusable analysis code
 - `notebooks/` exploratory notebooks
 - `plots/` generated figures
-- `docs/` project notes and workflow documentation
 
 ## Public data / external package
 This project uses the public XENON1T approximate nuclear-recoil likelihood release.
