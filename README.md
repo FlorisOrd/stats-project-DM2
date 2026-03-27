@@ -5,7 +5,7 @@
 - Cristian Ioniță — S5299837
 - Gianny Capitein - S4498313
 - Yuval Rochman - S5411505
-- Ivan Iturralde - S5325986
+- Ivan Iturralde - S5325986 (Model Lead)
 
 ## Repository structure
 - `data/` input data and processed data
