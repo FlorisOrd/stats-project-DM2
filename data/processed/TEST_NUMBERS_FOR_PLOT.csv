@@ -1,0 +1,11 @@
+
+# test numbers only
+# will be replaced with real csv this is just to see the plotting 
+
+mass,upper_limit
+5,1e-43
+10,5e-44
+30,2e-44
+100,1e-44
+300,5e-45
+1000,2e-46
