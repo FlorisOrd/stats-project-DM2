@@ -2,7 +2,7 @@
 
 ## Team members
 - Floris Ordelmans - S5693705 (Data lead)
-- Cristian Ioniță — S5299837
+- Cristian Ioniță — S5299837 (Inference lead)
 - Gianny Capitein - S4498313
 - Yuval Rochman - S5411505
 - Ivan Iturralde - S5325986 (Model Lead)
