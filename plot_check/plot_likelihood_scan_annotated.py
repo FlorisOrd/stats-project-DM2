@@ -22,10 +22,10 @@ plt.grid(True)
 plt.legend()
 plt.tight_layout()
 
-plt.savefig("plots/likelihood_scan_annotated_test.png",dpi=300)
+plt.savefig("plots/likelihood_scan_annotated.png",dpi=300)
 
 print("Minimum signal strength =",x_min)
 print("Minimum LLR =",y_min)
-print("Plot saved to plots/test/likelihood_scan_annotated_test.png")
+print("Plot saved to plots/likelihood_scan_annotated_test.png")
 
 plt.show()
