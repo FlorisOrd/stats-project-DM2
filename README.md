@@ -70,31 +70,41 @@ cd ..\stats-project-DM2
 
 ## How to reproduce the final result
 
-Run these two steps in order from the repository root:
-
 **Step 1 — Generate benchmark recoil spectra**
 ```powershell
 python .\make_physical_model_csvs.py
 ```
 Generates SI elastic WIMP recoil-spectrum CSVs in `data/raw/` for benchmark masses: 5, 10, 20, 30, 40, 50, 70, 100, 150, 200 GeV.
 
-**Step 2 — Run the likelihood workflow**
+**Step 2 — Run the multi-mass likelihood scan**
+```powershell
+python .\run_all_model_csvs.py
+```
+Loops over all benchmark mass spectra and prints the 90% upper limit for each mass.
 
-Run the likelihood workflow used in the project to evaluate the modeled spectra and produce:
-- `data/processed/limit_curve.csv`
+> **Reproducibility note:** `run_all_model_csvs.py` produces the upper-limit values but does not currently write `data/processed/limit_curve.csv` automatically — the final CSV was saved manually from the scan output. The final result file is already committed to the repository at `data/processed/limit_curve.csv`. The reusable single-spectrum interface is in `src/io/run_likelihood_scan.py`.
 
-> Note: the reusable script `src/io/run_likelihood_scan.py` currently runs the single-spectrum toy example and writes `data/processed/likelihood_scan.csv`. The final `limit_curve.csv` was produced from the multi-mass project workflow.
+**Step 3 — Plot the final limit curve**
+```powershell
+python .\plot_check\plot_limit_curve.py
+```
+Reads `data/processed/limit_curve.csv` and saves `plots/limit_curve.png`.
 
 ---
 
 ## Output files
-
 | File | Description |
 |---|---|
 | `data/processed/limit_curve.csv` | Benchmark masses and 90% upper limits — **final result** |
 | `plots/limit_curve.png` | Mass-dependent limit curve — **final report figure** |
 
 > **Note:** `data/processed/likelihood_scan.csv` and `data/raw/test_spectrum.csv` are development/diagnostic artefacts only and are not part of the final analysis.
+
+---
+
+## Diagnostic scripts (development only)
+- `test_custom_csv_pipeline.py` — early pipeline test on the toy spectrum
+- `plot_check/plot_likelihood_scan_annotated.py` — annotated likelihood-scan diagnostic plot
 
 ---
 
