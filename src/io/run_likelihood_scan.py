@@ -11,8 +11,8 @@ from src.io.xenon_interface import (
 
 def main():
     spectrum = load_spectrum_from_csv(
-        "data/raw/test_spectrum.csv",
-        title="toy custom spectrum"
+        "physical_wimp_50GeV.csv",
+        title="physical WIMP 50 GeV"
     )
 
     inference = make_xenon1t_inference(spectrum)
