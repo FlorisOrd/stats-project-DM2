@@ -1,8 +1,8 @@
 # Notebooks folder
 
-This directory includes the main code snippets utilized by the pipeline in notebook form, featuring brief annotations.
+This directory includes the main code snippets utilized by the pipeline in notebook form, accompanied by brief annotations.
 Namely, scripts for:
-- plotting (the limit curve and likelihood scan)
+- the XENON1T interface itself
 - running the likelihood scan
 - producing the limit curve data
-- the interface itself
+- plotting (the limit curve and likelihood scan)
