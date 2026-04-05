@@ -11,7 +11,7 @@ from src.io.xenon_interface import (
 
 def main():
     spectrum = load_spectrum_from_csv(
-        "physical_wimp_50GeV.csv",
+        "data/raw/physical_wimp_50GeV.csv",
         title="physical WIMP 50 GeV"
     )
 
