@@ -1,63 +1,68 @@
 # Dark Matter Project 2: XENON1T Approximate Nuclear-Recoil Likelihood
 
-A first-pass recast of the XENON1T approximate nuclear-recoil likelihood for a simplified spin-independent elastic WIMP model, producing a mass-dependent 90% upper-limit curve from 5 to 200 GeV.
+**A first-pass group-project recast of the public XENON1T approximate nuclear-recoil likelihood for a simplified spin-independent elastic WIMP model.**
 
-## Team members
-| Name | Student ID | Role |
-|---|---|---|
-| Floris Ordelmans | S5693705 | Data lead |
-| Cristian Ioniță | S5299837 | Inference lead |
-| Gianny Capitein | S4498313 | Plot/diagnostics lead |
-| Yuval Rochman | S5411505 | Integration/writing lead |
-| Ivan Iturralde | S5325986 | Model lead |
+## Research question and current result
+
+The project asks how the public [XENON1T approximate nuclear-recoil likelihood](https://github.com/XENON1T/xenon1t_approximate_nuclear_recoil_likelihood) can be used to construct a mass-dependent asymptotic 90% upper-limit curve for simplified WIMP-xenon recoil templates.
+
+The repository currently generates spectra at ten benchmark masses from 5 to 200 GeV, evaluates them with the approximate likelihood package and commits the resulting curve as [`data/processed/limit_curve.csv`](data/processed/limit_curve.csv) with a corresponding [plot](plots/limit_curve.png). This is an academic first-pass analysis, not an official XENON1T result or a precision reproduction of the collaboration's full analysis.
+
+## Methodology
+
+1. `make_physical_model_csvs.py` generates recoil-spectrum templates from 1 to 70 keV for a spin-independent elastic WIMP-xenon model.
+2. The model uses the stated Standard Halo Model parameters and a Helm nuclear form factor documented in [`data/README.md`](data/README.md).
+3. `run_all_model_csvs.py` loads each spectrum into the public XENON1T approximate likelihood through `BinwiseInference.from_xenon1t_sr`.
+4. The code computes an asymptotic 90% upper limit for each benchmark mass and `plot_check/plot_limit_curve.py` renders the committed curve.
+
+The generated spectra include a fixed factor of `1e45` for numerical convenience. They are arbitrarily normalized templates rather than absolute physical recoil rates, so the committed upper-limit values should be interpreted within this repository's chosen normalization.
 
 ## Repository structure
-| Folder | Contents |
+
+| Path | Purpose |
 |---|---|
-| `data/raw/` | Benchmark recoil-spectrum CSVs and toy test spectrum |
-| `data/processed/` | Output limit curve CSV |
-| `src/` | Reusable analysis code |
-| `plot_check/` | Diagnostic and development plotting scripts |
-| `plots/` | Generated figures |
-| `notebooks/` | Exploratory notebooks |
-
-## Public data / external package
-This project uses the public [XENON1T approximate nuclear-recoil likelihood release](https://github.com/XENON1T/xenon1t_approximate_nuclear_recoil_likelihood).
-
----
+| `make_physical_model_csvs.py` | Generate benchmark WIMP recoil-spectrum CSV files |
+| `run_all_model_csvs.py` | Run the approximate likelihood across the mass grid |
+| `src/io/` | Reusable spectrum, likelihood-scan and limit-curve interfaces |
+| `data/raw/` | Benchmark recoil templates and a diagnostic test spectrum |
+| `data/processed/` | Committed likelihood-scan and upper-limit outputs |
+| `plot_check/` | Development and final plotting scripts |
+| `plots/` | Generated diagnostic and final figures |
+| `notebooks/` | Exploratory analysis notebooks |
+| [`Project report DM2.pdf`](Project%20report%20DM2.pdf) | Group project report |
 
 ## Environment setup
 
-### 1. Clone this repository
+Clone the repository:
+
 ```powershell
 git clone https://github.com/FlorisOrd/stats-project-DM2.git
 cd stats-project-DM2
 ```
 
-### 2. Create a virtual environment
+Create and activate a virtual environment:
+
 ```powershell
 python -m venv .venv
-```
-
-### 3. Activate the virtual environment
-
-**Windows (PowerShell):**
-```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\.venv\Scripts\Activate.ps1
 ```
-**Linux / macOS:**
+
+On Linux or macOS, activate it with:
+
 ```bash
 source .venv/bin/activate
 ```
 
-### 4. Install project requirements
+Install the project requirements:
+
 ```powershell
 python -m pip install --upgrade pip setuptools wheel
 python -m pip install -r requirements.txt
 ```
 
-### 5. Install the official XENON1T likelihood package
+Install the official XENON1T likelihood package:
+
 ```powershell
 cd ..
 git clone https://github.com/XENON1T/xenon1t_approximate_nuclear_recoil_likelihood.git
@@ -66,48 +71,54 @@ python -m pip install .
 cd ..\stats-project-DM2
 ```
 
----
+## Reproduce the committed workflow
 
-## How to reproduce the final result
+Generate the benchmark spectra:
 
-**Step 1 — Generate benchmark recoil spectra**
 ```powershell
 python .\make_physical_model_csvs.py
 ```
-Generates SI elastic WIMP recoil-spectrum CSVs in `data/raw/` for benchmark masses: 5, 10, 20, 30, 40, 50, 70, 100, 150, 200 GeV.
 
-**Step 2 — Run the multi-mass likelihood scan**
+Run the mass scan:
+
 ```powershell
 python .\run_all_model_csvs.py
 ```
-Loops over all benchmark mass spectra and prints the 90% upper limit for each mass.
 
-> **Reproducibility note:** `run_all_model_csvs.py` produces the upper-limit values but does not currently write `data/processed/limit_curve.csv` automatically — the final CSV was saved manually from the scan output. The final result file is already committed to the repository at `data/processed/limit_curve.csv`. The reusable single-spectrum interface is in `src/io/run_likelihood_scan.py`.
+Plot the committed limit curve:
 
-**Step 3 — Plot the final limit curve**
 ```powershell
 python .\plot_check\plot_limit_curve.py
 ```
-Reads `data/processed/limit_curve.csv` and saves `plots/limit_curve.png`.
 
----
+`run_all_model_csvs.py` prints the upper-limit values but does not write `data/processed/limit_curve.csv` automatically. The committed final CSV was saved manually from the scan output.
 
-## Output files
-| File | Description |
+## Outputs
+
+| File | Status |
 |---|---|
-| `data/processed/limit_curve.csv` | Benchmark masses and 90% upper limits — **final result** |
-| `plots/limit_curve.png` | Mass-dependent limit curve — **final report figure** |
+| [`data/processed/limit_curve.csv`](data/processed/limit_curve.csv) | Final ten-mass upper-limit curve used by the project |
+| [`plots/limit_curve.png`](plots/limit_curve.png) | Final report figure |
+| `data/processed/likelihood_scan.csv` | Development/diagnostic scan |
+| `data/raw/test_spectrum.csv` | Development/diagnostic input |
+| `plots/likelihood_scan_annotated.png` | Development/diagnostic figure |
 
-> **Note:** `data/processed/likelihood_scan.csv` and `data/raw/test_spectrum.csv` are development/diagnostic artefacts only and are not part of the final analysis.
+## Limitations
 
----
+- The signal model is simplified and evaluated only on the committed ten-mass grid.
+- Spectrum normalization includes a numerical convenience factor and should not be read as an absolute physical recoil rate.
+- The final curve CSV is manually transferred from console output rather than generated end to end by the mass-scan script.
+- The work uses the public approximate likelihood release and should not be presented as the collaboration's official limit.
+- The repository contains exploratory notebooks and diagnostic artefacts alongside the final workflow.
 
-## Diagnostic scripts (development only)
-- `test_custom_csv_pipeline.py` — early pipeline test on the toy spectrum
-- `plot_check/plot_likelihood_scan_annotated.py` — annotated likelihood-scan diagnostic plot
+## My role and development approach
 
----
+This was a five-person group project. I served as data lead.
 
-## Diagnostic scripts (development only)
-- `test_custom_csv_pipeline.py` — early pipeline test on the toy spectrum
-- `plot_check/plot_likelihood_scan_annotated.py` — annotated likelihood-scan diagnostic plot
+| Team member | Recorded role |
+|---|---|
+| Floris Ordelmans | Data lead |
+| Cristian Ioniță | Inference lead |
+| Gianny Capitein | Plot and diagnostics lead |
+| Yuval Rochman | Integration and writing lead |
+| Ivan Iturralde | Model lead |
